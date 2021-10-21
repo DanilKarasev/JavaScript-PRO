@@ -16,19 +16,20 @@ img {
   margin: 0 auto; }
 
 .cart-button {
-  color: white;
-  padding: 10px 10px;
-  border-radius: 10px;
-  font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
-  background-size: 200% auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: 0.5s;
-  margin: 20px 20px;
-  cursor: pointer; }
+  margin: 40px 0;
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 38px;
+  border: 1px solid #FF6A6A;
+  background: #FFFFFF;
+  text-align: center;
+  color: #F26376;
+  font-size: 16px;
+  line-height: 19px;
+  transition: all 0.3s ease; }
   .cart-button:hover {
-    background-position: right center; }
+    color: white;
+    background-color: #F26376; }
 
 .goods-list {
   padding: 55px 0;
