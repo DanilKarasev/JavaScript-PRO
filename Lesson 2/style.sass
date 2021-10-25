@@ -27,9 +27,29 @@ img
   font-size: 16px
   line-height: 19px
   transition: all 0.3s ease
+  cursor: pointer
   &:hover
     color: white
     background-color: #F26376
+  &:active
+    background-color: #a8424e
+  &_active
+    color: white
+    background-color: #a8424e
+
+.cart-main
+  display: none
+  width: 100%
+  min-height: 150px
+  background-color: white
+  box-shadow: 1px 18px 20px 4px rgba(34, 60, 80, 0.2)
+  justify-content: space-evenly
+  &__empty
+    font-size: 39px
+    text-align: center
+    padding-top: 50px
+    opacity: 15%
+
 
 .goods-list
   padding: 55px 0
@@ -40,11 +60,15 @@ img
   max-width: 20%
   background-color: lavender
   font-family: 'Montserrat', sans-serif
+  cursor: pointer
+  transition: background-color 0.3s ease
   h3
     padding: 13px 29px 18px 18px
     text-transform: uppercase
   p
     padding: 13px 29px 18px 18px
+  &:hover
+    background-color: #EF5B70
 
 .cart__right_total
   margin: 0 auto
