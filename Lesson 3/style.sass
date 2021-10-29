@@ -39,11 +39,15 @@ img
 
 .cart-main
   display: none
-  width: 100%
-  min-height: 150px
+  flex-direction: column-reverse
+  position: absolute
+  top: 2%
+  right: 2%
+  min-height: 500px
+  gap: 50px
   background-color: white
   box-shadow: 1px 18px 20px 4px rgba(34, 60, 80, 0.2)
-  justify-content: space-between
+  justify-content: flex-end
   align-items: center
   &__empty
     font-size: 39px
@@ -51,17 +55,29 @@ img
     padding-top: 50px
     opacity: 15%
 
+.active
+  display: flex
+
 .cart-items
   display: flex
-  flex-grow: 1
+  flex-direction: column
   justify-content: space-evenly
+  align-items: center
 
 .cart-item
   background: #F26376
   padding: 10px 10px
+  width: 200px
+  cursor: pointer
+  margin-bottom: 20px
+  transition: background-color 0.3s ease
+  &:hover
+    background: #f1b2ba
   h4
+    pointer-events: none
     margin-bottom: 5px
-
+  p
+    pointer-events: none
 
 
 .goods-list
@@ -78,8 +94,10 @@ img
   h3
     padding: 13px 29px 18px 18px
     text-transform: uppercase
+    pointer-events: none
   p
     padding: 13px 29px 18px 18px
+    pointer-events: none
   &:hover
     background-color: #EF5B70
 
