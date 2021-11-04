@@ -56,25 +56,21 @@ img {
   margin-bottom: 20px; }
 
 .cart-main {
-  display: none;
   flex-direction: column-reverse;
   position: absolute;
   top: 2%;
   right: 2%;
-  min-height: 500px;
+  min-height: 300px;
   gap: 50px;
   background-color: white;
   box-shadow: 1px 18px 20px 4px rgba(34, 60, 80, 0.2);
-  justify-content: flex-end;
+  padding: 20px 10px;
   align-items: center; }
   .cart-main__empty {
     font-size: 39px;
     text-align: center;
     padding-top: 50px;
     opacity: 15%; }
-
-.active {
-  display: flex; }
 
 .cart-items {
   display: flex;

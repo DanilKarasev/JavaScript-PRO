@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>eShop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="container">
+      <button class="cart-button" type="button" v-on:click="onClickCart">Корзина</button>
+      <br>
+      <input id="search" class="search-input" type="text" v-model="searchLine" placeholder="Поиск...">
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="cart-main" v-if="isVisibleCart">
+        <div class="cart-items">
+          <div class="cart-item" v-for="item in cart" v-bind:data-id="item.id_product">
+            <h4>{{item.product_name}}</h4>
+            <p>Цена: ${{item.price}}</p>
+            <p>Количество: {{item.quantity}}</p>
+          </div>
+        </div>
+        <div class="cart__right_total">
+          <div class="cart__right_total_desc">
+            <p class="grand_total">ITEMS IN CART&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>{{amountOfItemsInCart}}</strong></p>
+            <p class="grand_total">TOTAL PRICE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>${{cartTotal}}</strong></p>
+          </div>
+          <hr class="cart__right_total_hr">
+          <button type="submit" class="cart__right_total_btn">PROCEED TO CHECKOUT</button>
+        </div>
+      </div>
+      <div class="goods-list">
+        <div v-if="filterGoods.length === 0">
+          NO DATA...
+        </div>
+        <div class="goods-item" v-for="good in filterGoods" v-bind:key="good.id_product" v-bind:data-id="good.id_product">
+          <h3>{{good.product_name}}</h3>
+          <p>${{good.price}}</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer>
+<!--  <div class="container">-->
+<!--    <form id="registration-form" class="registration_left" novalidate>-->
+<!--    <div class="registration_left-input">-->
+<!--      <h4>Your Info</h4>-->
+<!--      <input type="text" id="name" placeholder="First Name">-->
+<!--      <log></log>-->
+<!--      <input type="text" id="surname" placeholder="Last Name">-->
+<!--      <log></log>-->
+<!--      <input type="text" id="phone" placeholder="+7(000)000-0000">-->
+<!--      <log></log>-->
+<!--    </div>-->
+<!--    <div class="sex">-->
+<!--      <input name="sex" id="sex1" type="radio"><label for="sex1">Male</label>-->
+<!--      <input name="sex" id="sex2" type="radio"><label for="sex2">Female</label>-->
+<!--      <input name="sex" id="sex3" type="radio" checked><label for="sex3">Battle Helicopter</label>-->
+<!--    </div>-->
+<!--    <div class="registration_left-input">-->
+<!--      <h4>Login details</h4>-->
+<!--      <input type="email" id="email" placeholder="Email">-->
+<!--      <log></log>-->
+<!--      <input type="password" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" id="password" placeholder="Password">-->
+<!--      <log></log>-->
+<!--    </div>-->
+<!--    <p class="pass_desc">Please use 8 or more characters, with at least 1 number and a mixture of-->
+<!--      uppercase and lowercase-->
+<!--      letters</p>-->
+<!--    <button class="registration_btn" type="submit">JOIN NOW</button>-->
+<!--  </form>-->
+<!--  </div>-->
+</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
