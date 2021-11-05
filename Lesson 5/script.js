@@ -30,6 +30,20 @@ new Vue({
                     this.amountOfItemsInCart = data.countGoods;
                     this.cartTotal = data.amount;
                 })
+        },
+        deleteFromCart(e) {
+            const id = e.target.getAttribute('data-id');
+            fetch(`${API_URL}deleteFromBasket.json`)
+                .then(() => {
+                    const index = this.cart.findIndex((good) => good.id == id);
+                    this.cart.splice(index, 1);
+                })
+        },
+        addToCart(e) {
+            fetch(`${API_URL}deleteFromBasket.json`)
+                .then(() => {
+                    this.cart.push(e.target);
+                })
         }
     },
     computed: {
