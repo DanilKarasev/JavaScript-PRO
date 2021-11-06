@@ -21,7 +21,7 @@
     <div class="container">
       <div class="cart-main" v-if="isVisibleCart">
         <div class="cart-items">
-          <div class="cart-item" v-for="item in cart" v-bind:data-id="item.id_product" v-on:click="deleteFromCart">
+          <div class="cart-item" v-for="item in cart" v-bind:data-id="item.id_product" v-on:click="deleteFromCart(item)">
             <h4>{{item.product_name}}</h4>
             <p>Цена: ${{item.price}}</p>
             <p>Количество: {{item.quantity}}</p>
@@ -40,7 +40,7 @@
         <div v-if="filterGoods.length === 0">
           NO DATA...
         </div>
-        <div class="goods-item" v-for="good in filterGoods" v-bind:key="good.id_product" v-bind:data-id="good.id_product" v-on:click="addToCart">
+        <div class="goods-item" v-for="good in filterGoods" v-bind:key="good.id_product" v-bind:data-id="good.id_product" v-on:click="addToCart(good)">
           <h3>{{good.product_name}}</h3>
           <p>${{good.price}}</p>
         </div>

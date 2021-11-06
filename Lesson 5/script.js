@@ -31,18 +31,19 @@ new Vue({
                     this.cartTotal = data.amount;
                 })
         },
-        deleteFromCart(e) {
-            const id = e.target.getAttribute('data-id');
+        deleteFromCart(good) {
             fetch(`${API_URL}deleteFromBasket.json`)
                 .then(() => {
-                    const index = this.cart.findIndex((good) => good.id == id);
+                    const index = this.cart.findIndex((el) => el == good);
+                    console.log(index)
                     this.cart.splice(index, 1);
                 })
         },
-        addToCart(e) {
+        addToCart(good) {
             fetch(`${API_URL}deleteFromBasket.json`)
                 .then(() => {
-                    this.cart.push(e.target);
+                    console.log(good);
+                    this.cart.push(good);
                 })
         }
     },
