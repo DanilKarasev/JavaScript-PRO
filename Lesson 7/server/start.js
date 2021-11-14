@@ -24,18 +24,17 @@ app.get('/cart', (req, res) => {
 app.post('/addToCart', (req, res) => {
     fs.readFile('data/cart.json', "utf8", (err, data) => {
         const cart = JSON.parse(data);
-
-        let id = 1;
-
-        if (cart.length > 0) {
-            id = cart[cart.length - 1].id_product + 1;
-        }
-
         const item = req.body;
-        console.log(item);
-        item.id_product = id;
+        item.quantity = 1;
 
-        cart.push(item);
+        console.log(data, item)
+
+        if (cart.some(e => e.id_product === item.id_product)) {
+            const index = cart.findIndex(e => e.id_product === item.id_product);
+            ++cart[index].quantity;
+        } else {
+            cart.push(item);
+        }
 
         fs.writeFile('data/cart.json', JSON.stringify(cart), (err) => {
             console.log('Item added');
@@ -63,9 +62,17 @@ app.delete('/removeFromCart', (req, res) => {
     fs.readFile('data/cart.json', "utf8", (err, data) => {
         const cart = JSON.parse(data);
         const item = req.body;
+        const index = cart.findIndex((e) => e.id_product === item.id_product)
 
-        const index = cart.findIndex((good) => good.id_product === item.id_product)
-        cart.splice(index, 1)
+        if (cart.some(e => e.id_product === item.id_product)) {
+            if (cart[index].quantity > 1) {
+                --cart[index].quantity;
+            } else {
+                cart.splice(index, 1)
+            }
+        } else {
+            cart.splice(index, 1)
+        }
 
         fs.writeFile('data/cart.json', JSON.stringify(cart), (err) => {
             console.log('Item deleted');

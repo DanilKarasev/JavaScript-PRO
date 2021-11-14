@@ -7,7 +7,8 @@ Vue.component ('good-item', {
         </div>`,
     props: {
         title: String,
-        price: Number
+        price: Number,
+        id: Number
     },
     methods: {
         onClick() {
@@ -16,7 +17,7 @@ Vue.component ('good-item', {
                 headers: {
                     'Content-Type': 'application/JSON'
                 },
-                body: JSON.stringify({product_name: this.title, price: this.price})
+                body: JSON.stringify({product_name: this.title, price: this.price, id_product: this.id})
             })
                 .then(() => {
                     this.$root.loadCart();
@@ -29,7 +30,8 @@ Vue.component ('goods-list', {
     template: `<div class="goods-list">
         <good-item 
         v-for="good of list" 
-        v-bind:key="good.id_product" 
+        v-bind:key="good.id_product"
+        v-bind:id="good.id_product" 
         v-bind:title="good.product_name" 
         v-bind:price="good.price">
         </good-item>
@@ -43,11 +45,13 @@ Vue.component('cart-item', {
     template: `<div class="cart-item" @click="onClick">
     <h4>{{ title }}</h4>
     <p>Цена: $ {{ price }}</p>
+    <p>Количество: {{ quantity }}</p>
   </div>`,
     props: {
         title: String,
         price: Number,
-        id: Number
+        id: Number,
+        quantity: Number
     },
     methods: {
         onClick() {
@@ -56,7 +60,7 @@ Vue.component('cart-item', {
                 headers: {
                     'Content-Type': 'application/JSON'
                 },
-                body: JSON.stringify({product_name: this.title, price: this.price, id_product: this.id})
+                body: JSON.stringify({product_name: this.title, price: this.price, id_product: this.id, quantity: this.quantity})
             })
                 .then(() => {
                     console.log(this.id_product)
@@ -68,7 +72,7 @@ Vue.component('cart-item', {
 
 Vue.component ('cart', {
     template: `<div class="cart-items">
-          <cart-item v-for="good of cart" v-bind:key="good.id_product" v-bind:title="good.product_name" v-bind:price="good.price" v-bind:id="good.id_product">
+          <cart-item v-for="good of cart" v-bind:key="good.id_product" v-bind:quantity="good.quantity" v-bind:title="good.product_name" v-bind:price="good.price" v-bind:id="good.id_product">
           </cart-item>
         </div>`,
     props: {
