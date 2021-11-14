@@ -26,14 +26,12 @@ app.post('/addToCart', (req, res) => {
   fs.readFile('data/cart.json', "utf8", (err, data) => {
     const cart = JSON.parse(data);
     const item = req.body;
-    item.quantity = 1;
-
-    console.log(cart, item)
 
     if (cart.some(e => e.id_product === item.id_product)) {
       const index = cart.findIndex(e => e.id_product === item.id_product);
       ++cart[index].quantity;
     } else {
+      item.quantity = 1;
       cart.push(item);
     }
 
