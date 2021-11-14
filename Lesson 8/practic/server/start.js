@@ -53,14 +53,8 @@ app.delete('/removeFromCart', (req, res) => {
     if (cart.some(e => e.id_product === item.id_product)) {
       if (cart[index].quantity > 1) {
         --cart[index].quantity;
-      } else {
-        cart.splice(index, 1)
-      }
-    } else {
-      cart.splice(index, 1)
+      } else cart.splice(index, 1)
     }
-
-
     fs.writeFile('data/cart.json', JSON.stringify(cart), (err) => {
       console.log('Item deleted');
       res.end();

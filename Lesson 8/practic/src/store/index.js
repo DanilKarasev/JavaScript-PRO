@@ -17,14 +17,33 @@ export default new Vuex.Store({
   },
   mutations: {
     loadGoods: (state, payload) => {
-      state.goods = payload
-      state.filteredGoods = payload
+      state.goods = payload;
+      state.filteredGoods = payload;
     },
     loadCart: (state, payload) => {
-      state.cart = payload
+      state.cart = payload;
+    },
+    add: (state, payload) => {
+      if (state.cart.some(e => e.id_product === payload.id_product)) {
+        const index = state.cart.findIndex(e => e.id_product === payload.id_product);
+        ++state.cart[index].quantity;
+      } else {
+        payload.quantity = 1;
+        state.cart.push(payload);
+      }
+
+    },
+    remove: (state, payload) => {
+      const index = state.cart.findIndex((e) => e.id_product === payload.id_product);
+
+      if (state.cart.some(e => e.id_product === payload.id_product)) {
+        if (state.cart[index].quantity > 1) {
+          --state.cart[index].quantity;
+        } else state.cart.splice(index, 1)
+      }
     },
     filter: (state, payload) => {
-      state.filteredGoods = payload
+      state.filteredGoods = payload;
     }
   },
   actions: {
@@ -50,6 +69,9 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(good)
       })
+        .then(() => {
+          commit('add', good)
+        })
     },
     removeFromCart({ commit }, good){
       fetch(`${API_URL}removeFromCart`, {
@@ -59,6 +81,9 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(good)
       })
+        .then(() => {
+          commit('remove', good)
+        })
     },
     search({ commit, state}, searchString){
       const regex = new RegExp(searchString, 'i');
