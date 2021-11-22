@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>eShop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="container">
+      <button class="cart-button" type="button" v-on:click="onClickCart">Корзина</button>
+      <br>
+      <search v-on:search="onSearch"></search>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="cart-main" v-if="isVisibleCart">
+        <cart v-bind:cart="cart"></cart>
+        <div class="cart__right_total">
+          <div class="cart__right_total_desc">
+            <p class="grand_total">ITEMS IN CART&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>{{amountOfItemsInCart}}</strong></p>
+            <p class="grand_total">TOTAL PRICE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>${{cartTotal}}</strong></p>
+          </div>
+          <hr class="cart__right_total_hr">
+          <button type="submit" class="cart__right_total_btn">PROCEED TO CHECKOUT</button>
+        </div>
+      </div>
+      <div v-if="filteredGoods.length === 0 && loadError === false">NO DATA...</div>
+      <goods-list v-bind:list="filteredGoods"></goods-list>
+    </div>
+  </main>
+  <error v-if="loadError"></error>
+  <footer>
+
+<!--  <div class="container">-->
+<!--    <form id="registration-form" class="registration_left" novalidate>-->
+<!--    <div class="registration_left-input">-->
+<!--      <h4>Your Info</h4>-->
+<!--      <input type="text" id="name" placeholder="First Name">-->
+<!--      <log></log>-->
+<!--      <input type="text" id="surname" placeholder="Last Name">-->
+<!--      <log></log>-->
+<!--      <input type="text" id="phone" placeholder="+7(000)000-0000">-->
+<!--      <log></log>-->
+<!--    </div>-->
+<!--    <div class="sex">-->
+<!--      <input name="sex" id="sex1" type="radio"><label for="sex1">Male</label>-->
+<!--      <input name="sex" id="sex2" type="radio"><label for="sex2">Female</label>-->
+<!--      <input name="sex" id="sex3" type="radio" checked><label for="sex3">Battle Helicopter</label>-->
+<!--    </div>-->
+<!--    <div class="registration_left-input">-->
+<!--      <h4>Login details</h4>-->
+<!--      <input type="email" id="email" placeholder="Email">-->
+<!--      <log></log>-->
+<!--      <input type="password" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}" id="password" placeholder="Password">-->
+<!--      <log></log>-->
+<!--    </div>-->
+<!--    <p class="pass_desc">Please use 8 or more characters, with at least 1 number and a mixture of-->
+<!--      uppercase and lowercase-->
+<!--      letters</p>-->
+<!--    <button class="registration_btn" type="submit">JOIN NOW</button>-->
+<!--  </form>-->
+<!--  </div>-->
+</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
