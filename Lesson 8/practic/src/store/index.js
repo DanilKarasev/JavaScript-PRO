@@ -27,8 +27,8 @@ export default new Vuex.Store({
       if (state.cart.some(e => e.id_product === payload.id_product)) {
         const index = state.cart.findIndex(e => e.id_product === payload.id_product);
         ++state.cart[index].quantity;
+        console.log ( state.cart[ index ].quantity );
       } else {
-        payload.quantity = 1;
         state.cart.push(payload);
       }
 

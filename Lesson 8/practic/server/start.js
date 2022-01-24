@@ -31,7 +31,6 @@ app.post('/addToCart', (req, res) => {
       const index = cart.findIndex(e => e.id_product === item.id_product);
       ++cart[index].quantity;
     } else {
-      item.quantity = 1;
       cart.push(item);
     }
 
